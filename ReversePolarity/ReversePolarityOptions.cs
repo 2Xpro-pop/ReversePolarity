@@ -6,7 +6,13 @@ namespace ReversePolarity
 {
     public class ReversePolarityOptions
     {
+        public ReversePolarityOptions(IFromJsServiceCollection services, IJsModuleImportStrategy importStrategy)
+        {
+            Services = services;
+            ImportStrategy = importStrategy;
+        }
+
         public IFromJsServiceCollection Services { get; }
-        public IJsModuleImportStrategy ImportStrategy { get; }
+        public IJsModuleImportStrategy ImportStrategy { get; set; }
     }
 }

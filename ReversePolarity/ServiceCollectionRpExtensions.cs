@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using ReversePolarity.ImportStrategies.Yaml;
 using ReversePolarity.Internal;
 
 namespace ReversePolarity
@@ -14,11 +15,13 @@ namespace ReversePolarity
             configure?.Invoke(jsServices);
         }
 
-        public static void AddReversePolarity(this IServiceCollection services, Action<IFromJsServiceCollection>? configure = null)
+        public static void AddReversePolarity(this IServiceCollection services, Action<ReversePolarityOptions>? configure = null)
         {
+            var jsServices = new JsProvidableAdapter(services);
+            var yamlStrategy = new YamlImportStrategy();
+            var options = new ReversePolarityOptions(jsServices, yamlStrategy);
 
-
-            ConfigureJsProvidable(services, configure);
+            services.AddSingleton<IJsModules>();
         }
     }
 }

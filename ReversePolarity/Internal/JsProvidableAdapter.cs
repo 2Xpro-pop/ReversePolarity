@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,7 @@ namespace ReversePolarity.Internal
         public int Count => _services.Count;
 
         public bool IsReadOnly => _services.IsReadOnly;
+
 
         public void Add(ServiceDescriptor item)
         {
